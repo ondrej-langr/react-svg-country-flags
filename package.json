@@ -1,10 +1,10 @@
 {
-  "name": "react-svg-country-flags",
+  "name": "svg-country-flags-react",
   "version": "0.0.0",
   "description": "React implementation of svg-country-flags package",
-  "main": "dist/react-svg-country-flags.cjs.js",
-  "types": "dist/react-svg-country-flags.cjs.d.ts",
-  "module": "dist/react-svg-country-flags.esm.js",
+  "main": "dist/svg-country-flags-react.cjs.js",
+  "types": "dist/svg-country-flags-react.cjs.d.ts",
+  "module": "dist/svg-country-flags-react.esm.js",
   "scripts": {
     "build": "preconstruct build",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ondrej-langr/react-svg-country-flags.git"
+    "url": "git+https://github.com/ondrej-langr/svg-country-flags-react.git"
   },
   "files": [
     "dist"
@@ -36,9 +36,9 @@
   "author": "Ondřej Langr <hi@ondrejlangr.cz>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ondrej-langr/react-svg-country-flags/issues"
+    "url": "https://github.com/ondrej-langr/svg-country-flags-react/issues"
   },
-  "homepage": "https://github.com/ondrej-langr/react-svg-country-flags#readme",
+  "homepage": "https://github.com/ondrej-langr/svg-country-flags-react#readme",
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
