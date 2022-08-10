@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "React implementation of svg-country-flags package",
   "main": "dist/react-svg-country-flags.cjs.js",
+  "types": "dist/react-svg-country-flags.cjs.d.ts",
   "module": "dist/react-svg-country-flags.esm.js",
   "scripts": {
     "build": "preconstruct build",
