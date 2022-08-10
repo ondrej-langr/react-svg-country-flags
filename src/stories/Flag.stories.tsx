@@ -21,5 +21,5 @@ NormalFlag.args = {
 export const NormalFlagWithCustomPlaceholder = Template.bind({});
 NormalFlagWithCustomPlaceholder.args = {
   countryCode: 'gb',
-  placeholder: 'Hello this is placeholder',
+  placeholder: <>Hello this is placeholder</>,
 };
