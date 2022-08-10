@@ -1,4 +1,4 @@
-# react-svg-country-flags
+# svg-country-flags-react
 
 This is a package for react apps that want to use `svg-country-flags` effortlessly. 
 
@@ -7,13 +7,13 @@ This is a package for react apps that want to use `svg-country-flags` effortless
 ### Yarn
 
 ```bash
-yarn add react-svg-country-flags svg-country-flags
+yarn add svg-country-flags-react svg-country-flags
 ```
 
 ### NPM
 
 ```bash
-npm install react-svg-country-flags svg-country-flags
+npm install svg-country-flags-react svg-country-flags
 ```
 
 ## 🤑 Usage
@@ -21,7 +21,7 @@ npm install react-svg-country-flags svg-country-flags
 This react component uses dynamic import to handle all imports on client. When loading the flag has animation instead of flag itself. 
 
 ```tsx
-import { Flag } from "svg-country-flags"
+import { Flag } from "svg-country-flags-react"
 
 <Flag 
   countryCode="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
@@ -37,7 +37,7 @@ import { Flag } from "svg-country-flags"
 You can pass a placeholder component if flag is loading or is not found (or in this case any other error has happened)
 
 ```tsx
-import { Flag } from "svg-country-flags"
+import { Flag } from "svg-country-flags-react"
 
 <Flag 
   countryCode="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
@@ -52,7 +52,7 @@ import { Flag } from "svg-country-flags"
 Or you can pass a function that returns component. In this function you can get a type of fallback. There is a type of "loading", "not-found" and "error".
 
 ```tsx
-import { Flag } from "svg-country-flags"
+import { Flag } from "svg-country-flags-react"
 
 <Flag 
   countryCode="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
