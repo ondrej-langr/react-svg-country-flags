@@ -24,8 +24,23 @@ This react component uses dynamic import to handle all imports on client. When l
 import { Flag } from "svg-country-flags"
 
 <Flag 
-  locale="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
+  countryCode="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
   className="some-nice-class-name"
+  // ...any other img props
+/>
+```
+
+### With placeholder
+
+You can pass a placeholder if flag is loading or is not found (or in this case any other error has happened)
+
+```tsx
+import { Flag } from "svg-country-flags"
+
+<Flag 
+  countryCode="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
+  className="some-nice-class-name"
+  palceholder={<>Some nice placeholder</>}
   // ...any other img props
 />
 ```
