@@ -1,0 +1,23 @@
+{
+  "name": "react-svg-country-flags",
+  "version": "0.0.0",
+  "description": "React implementation of svg-country-flags package",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ondrej-langr/react-svg-country-flags.git"
+  },
+  "keywords": [
+    "react",
+    "flags",
+    "svg-country-flags"
+  ],
+  "author": "Ondřej Langr <hi@ondrejlangr.cz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ondrej-langr/react-svg-country-flags/issues"
+  },
+  "homepage": "https://github.com/ondrej-langr/react-svg-country-flags#readme"
+}
