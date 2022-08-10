@@ -11,15 +11,23 @@ export default {
   },
 } as ComponentMeta<typeof Flag>;
 
-const Template: ComponentStory<typeof Flag> = (args) => <Flag {...args} />;
+const Template: ComponentStory<typeof Flag> = (args) => (
+  <div style={{ padding: 10 }}>
+    <Flag {...args} />
+  </div>
+);
 
-export const NormalFlag = Template.bind({});
-NormalFlag.args = {
+const defaultArgs = {
   countryCode: 'gb',
+  width: 300,
+  height: 200,
 };
 
+export const NormalFlag = Template.bind({});
 export const NormalFlagWithCustomPlaceholder = Template.bind({});
+
+NormalFlag.args = defaultArgs;
 NormalFlagWithCustomPlaceholder.args = {
-  countryCode: 'gb',
-  placeholder: <>Hello this is placeholder</>,
+  ...defaultArgs,
+  placeholder: ({ type }) => <>Hello this is placeholder of type {type}</>,
 };

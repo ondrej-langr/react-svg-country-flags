@@ -32,7 +32,9 @@ import { Flag } from "svg-country-flags"
 
 ### With placeholder
 
-You can pass a placeholder if flag is loading or is not found (or in this case any other error has happened)
+
+#### Component
+You can pass a placeholder component if flag is loading or is not found (or in this case any other error has happened)
 
 ```tsx
 import { Flag } from "svg-country-flags"
@@ -41,6 +43,21 @@ import { Flag } from "svg-country-flags"
   countryCode="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
   className="some-nice-class-name"
   palceholder={<>Some nice placeholder</>}
+  // ...any other img props
+/>
+```
+
+#### Function
+
+Or you can pass a function that returns component. In this function you can get a type of fallback. There is a type of "loading", "not-found" and "error".
+
+```tsx
+import { Flag } from "svg-country-flags"
+
+<Flag 
+  countryCode="gb" // https://github.com/hampusborgos/country-flags/tree/main/svg
+  className="some-nice-class-name"
+  palceholder={({ type }) => <>This is a nice fallback of type "{type}"</>}
   // ...any other img props
 />
 ```

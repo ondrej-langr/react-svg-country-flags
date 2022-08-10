@@ -5,10 +5,11 @@ import {
   isValidElement,
   ReactNode,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 
-type FallbackType = 'loading' | 'not-found' | 'error';
+export type FallbackType = 'loading' | 'not-found' | 'error';
 
 export type FlagProps = Omit<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
@@ -62,16 +63,20 @@ export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
     }
   }, [countryCode]);
 
-  const fallbackContent = placeholder ? (
-    isValidElement(placeholder) ? (
-      placeholder
-    ) : typeof placeholder === 'function' ? (
-      placeholder({ type: fallbackType! })
-    ) : (
-      placeholder
-    )
-  ) : (
-    <div style={{ backgroundColor: 'gray', width, height }} />
+  const fallbackContent = useMemo(
+    () =>
+      placeholder ? (
+        isValidElement(placeholder) ? (
+          placeholder
+        ) : typeof placeholder === 'function' ? (
+          placeholder({ type: fallbackType! })
+        ) : (
+          placeholder
+        )
+      ) : (
+        <div style={{ backgroundColor: 'gray', width, height }} />
+      ),
+    [placeholder, fallbackType]
   );
 
   return flagSrc ? (
