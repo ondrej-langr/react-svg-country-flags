@@ -7,9 +7,9 @@ import {
   useState,
 } from 'react';
 
-export type FlagProps = DetailedHTMLProps<
-  ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement
+export type FlagProps = Omit<
+  DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
+  'src'
 > & {
   /**
    * Country code to display
@@ -22,7 +22,7 @@ export type FlagProps = DetailedHTMLProps<
 };
 
 export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
-  { countryCode, placeholder },
+  { countryCode, placeholder, width = 20, height = 10, ...rest },
   ref
 ) {
   const [flagSrc, setFlagSrc] = useState();
@@ -42,8 +42,10 @@ export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
   }, [countryCode]);
 
   return flagSrc ? (
-    <img ref={ref} src={flagSrc} />
+    <img ref={ref} src={flagSrc} width={width} height={height} {...rest} />
   ) : (
-    <>{placeholder}</> || <div style={{ backgroundColor: 'gray' }} />
+    <>{placeholder}</> || (
+      <div style={{ backgroundColor: 'gray', width, height }} />
+    )
   );
 });
