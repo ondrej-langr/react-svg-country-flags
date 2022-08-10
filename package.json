@@ -1,6 +1,6 @@
 {
   "name": "svg-country-flags-react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "React implementation of svg-country-flags package",
   "main": "dist/svg-country-flags-react.cjs.js",
   "types": "dist/svg-country-flags-react.cjs.d.ts",
