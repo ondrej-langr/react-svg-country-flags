@@ -5,7 +5,11 @@
   "main": "dist/react-svg-country-flags.cjs.js",
   "module": "dist/react-svg-country-flags.esm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "preconstruct build",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "version-packages": "changeset version && yarn format",
+    "prerelease": "npm run format && npm run build",
+    "release": "changeset publish"
   },
   "repository": {
     "type": "git",
@@ -15,6 +19,13 @@
     "react",
     "flags",
     "svg-country-flags"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "contributors": [
+    "Ondřej Langr <hi@ondrejlangr.cz>"
   ],
   "author": "Ondřej Langr <hi@ondrejlangr.cz>",
   "license": "ISC",
