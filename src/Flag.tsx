@@ -2,6 +2,7 @@ import {
   DetailedHTMLProps,
   forwardRef,
   ImgHTMLAttributes,
+  isValidElement,
   ReactNode,
   useEffect,
   useState,
@@ -9,14 +10,14 @@ import {
 
 export type FlagProps = Omit<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
-  'src'
+  'src' | 'placeholder'
 > & {
   /**
    * Country code to display
    */
   countryCode: string;
   /**
-   * Placeholder element for when the flag is not found or is not loaded
+   * Placeholder element for when the flag is loading
    */
   placeholder?: ReactNode;
 };
@@ -29,11 +30,18 @@ export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
 
   useEffect(() => {
     const loadSvg = async () => {
-      const { default: response } = await import(
-        `svg-country-flags/svg/${countryCode}.svg`
-      );
-
-      setFlagSrc(response);
+      setFlagSrc(undefined);
+      try {
+        const { default: response } = await import(
+          `svg-country-flags/svg/${countryCode}.svg`
+        );
+        setFlagSrc(response);
+      } catch (e) {
+        if (e instanceof Error && e.message.includes('Cannot find module')) {
+          console.error(`Did not find flag under the name of ${countryCode}`);
+        }
+        setFlagSrc(undefined);
+      }
     };
 
     if (countryCode) {
@@ -44,7 +52,7 @@ export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
   return flagSrc ? (
     <img ref={ref} src={flagSrc} width={width} height={height} {...rest} />
   ) : (
-    <>{placeholder}</> || (
+    <>{isValidElement(placeholder) ? placeholder : placeholder}</> || (
       <div style={{ backgroundColor: 'gray', width, height }} />
     )
   );
