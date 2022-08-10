@@ -8,6 +8,8 @@ import {
   useState,
 } from 'react';
 
+type FallbackType = 'loading' | 'not-found' | 'error';
+
 export type FlagProps = Omit<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
   'src' | 'placeholder'
@@ -19,7 +21,7 @@ export type FlagProps = Omit<
   /**
    * Placeholder element for when the flag is loading
    */
-  placeholder?: ReactNode;
+  placeholder?: ReactNode | ((options: { type: FallbackType }) => ReactNode);
 };
 
 export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
@@ -27,19 +29,30 @@ export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
   ref
 ) {
   const [flagSrc, setFlagSrc] = useState();
+  const [fallbackType, setFallbackType] = useState<FallbackType | undefined>();
 
   useEffect(() => {
     const loadSvg = async () => {
+      setFallbackType('loading');
       setFlagSrc(undefined);
+
       try {
         const { default: response } = await import(
           `svg-country-flags/svg/${countryCode}.svg`
         );
         setFlagSrc(response);
+        setFallbackType(undefined);
       } catch (e) {
         if (e instanceof Error && e.message.includes('Cannot find module')) {
-          console.error(`Did not find flag under the name of ${countryCode}`);
+          console.error(
+            `Flag component did not find flag under the countryCode of ${countryCode}`
+          );
+          setFallbackType('not-found');
+        } else {
+          setFallbackType('error');
+          console.error(e);
         }
+
         setFlagSrc(undefined);
       }
     };
@@ -49,11 +62,21 @@ export const Flag = forwardRef<HTMLImageElement, FlagProps>(function Flag(
     }
   }, [countryCode]);
 
+  const fallbackContent = placeholder ? (
+    isValidElement(placeholder) ? (
+      placeholder
+    ) : typeof placeholder === 'function' ? (
+      placeholder({ type: fallbackType! })
+    ) : (
+      placeholder
+    )
+  ) : (
+    <div style={{ backgroundColor: 'gray', width, height }} />
+  );
+
   return flagSrc ? (
     <img ref={ref} src={flagSrc} width={width} height={height} {...rest} />
   ) : (
-    <>{isValidElement(placeholder) ? placeholder : placeholder}</> || (
-      <div style={{ backgroundColor: 'gray', width, height }} />
-    )
+    <>{fallbackContent}</>
   );
 });
