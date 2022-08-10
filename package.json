@@ -2,22 +2,73 @@
   "name": "react-svg-country-flags",
   "version": "0.0.0",
   "description": "React implementation of svg-country-flags package",
+  "main": "dist/react-svg-country-flags.cjs.js",
+  "types": "dist/react-svg-country-flags.cjs.d.ts",
+  "module": "dist/react-svg-country-flags.esm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "preconstruct build",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "version-packages": "changeset version && yarn format",
+    "prerelease": "npm run format && npm run build",
+    "release": "changeset publish",
+    "start": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ondrej-langr/react-svg-country-flags.git"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "react",
     "flags",
     "svg-country-flags"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "contributors": [
+    "Ondřej Langr <hi@ondrejlangr.cz>"
   ],
   "author": "Ondřej Langr <hi@ondrejlangr.cz>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ondrej-langr/react-svg-country-flags/issues"
   },
-  "homepage": "https://github.com/ondrej-langr/react-svg-country-flags#readme"
+  "homepage": "https://github.com/ondrej-langr/react-svg-country-flags#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@changesets/cli": "^2.24.2",
+    "@preconstruct/cli": "^2.2.1",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack4": "^6.5.10",
+    "@storybook/manager-webpack4": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "babel-loader": "^8.2.5",
+    "prettier": "^2.7.1",
+    "storybook": "^6.5.10",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "svg-country-flags": "^1.2.10"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17",
+    "svg-country-flags": "^1.2.10"
+  }
 }
